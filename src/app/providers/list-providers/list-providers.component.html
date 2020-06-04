@@ -1,29 +1,11 @@
-<div class="container">
-    <ul>
-        <li *ngFor="let provider of providers" class="row">
-            <div class="imagewrapper"><img src="{{provider.url}}" alt="provider-image"></div>
-
-            <div class="titledescription">
-                <div class="titlewrapper">
-                    <h4>{{provider.name}}</h4>
-                </div>
-                <div class="limit">
-                    <p>{{provider.description}}</p>
-                </div>
-            </div>
-
-        </li>
-    </ul>
-</div>
-
-
-<!--<mat-list>
-  <mat-list-item *ngFor="let provider of providers">
-    <img matListAvatar src="{{provider.url}}" alt="provider-image">
-    <h3 matLine> {{provider.name}} </h3>
-    <p matLine>
-      <span> {{provider.name}} </span>
-      <span class="demo-2"> -- {{provider.description}} </span>
-    </p>
-  </mat-list-item>
-</mat-list>-->
+<ul>
+    <li *ngFor="let provider of providers" (click)="openProvider(provider)">
+        <div class="imagewrapper">
+            <img src="{{provider.url}}" alt="provider-image">
+        </div>
+        <div class="titledescription">
+            <label>{{provider.name}}</label>
+            <p>{{provider.description}}</p>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,11 @@
+<app-list-provinces></app-list-provinces>
+
+<form [formGroup]="provinceForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+        <label> Provincia: </label>
+        <input type="text" formControlName="name">
+    </div>
+
+    <button type="submit" [disabled]="!provinceForm.valid">Guardar</button>
+</form>

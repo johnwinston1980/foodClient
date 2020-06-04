@@ -1,0 +1,21 @@
+<ul>
+    <li *ngFor="let contact of contacts" (click)="newTransfer(contact)">
+        <div class="full">
+            <label>{{contact.name}}</label>
+        </div>
+        <div>
+            <div class="split">
+                <mat-icon> contact_phone</mat-icon>
+                <p>{{contact.phone}}</p>
+            </div>
+            <div class="split">
+                <mat-icon> email</mat-icon>
+                <p>{{contact.email}}</p>
+            </div>
+            <div class="split">
+                <mat-icon>location_city</mat-icon>
+                <p>{{contact.address}}</p>
+            </div>
+        </div>
+    </li>
+</ul>

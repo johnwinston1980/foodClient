@@ -1,0 +1,11 @@
+<app-list-towns></app-list-towns>
+
+<form [formGroup]="townForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+        <label> Municipio: </label>
+        <input type="text" formControlName="name">
+    </div>
+
+    <button type="submit" [disabled]="!townForm.valid">Guardar</button>
+</form>

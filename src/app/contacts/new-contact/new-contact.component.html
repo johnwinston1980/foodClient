@@ -1,0 +1,48 @@
+<form class="container" [formGroup]="contactProfileForm" (ngSubmit)="onSubmit()">
+
+
+    <mat-form-field class="input-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name">
+    </mat-form-field>
+
+    <!--<div class="row">
+        <label> Nombre: </label>
+        <input type="text" formControlName="name">
+    </div>-->
+
+    <div class="row">
+        <label> Telefono: </label>
+        <input type="text" formControlName="phone">
+    </div>
+
+    <div class="row">
+        <label> email: </label>
+        <input type="email" formControlName="email" placeholder="opcional">
+    </div>
+
+
+    <div class="row">
+        <label> Provincia: </label>
+        <select formControlName="prov" (ngModelChange)="onChangeofProvince($event)">
+            <option *ngFor="let province of provinces" [ngValue]="province.name">{{province.name}}</option>        
+        </select>
+    </div>
+
+
+    <div class="row">
+        <label> Municipio: </label>
+        <select formControlName="town">
+            <option *ngFor="let t of towns" [ngValue]="t.name">{{t.name}}</option>        
+        </select>
+    </div>
+
+
+
+    <div class="row">
+        <label> Direccion: </label>
+        <input type="text" formControlName="address">
+    </div>
+
+    <button type="submit" [disabled]="!contactProfileForm.valid">Submit</button>
+</form>

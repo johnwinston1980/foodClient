@@ -1,0 +1,14 @@
+<table>
+    <tr *ngFor="let transfer of transfers" (click)="gotoDetails(transfer)">
+        <th>
+            {{transfer.status}}
+        </th>
+        <th>
+            {{transfer.amount}}
+        </th>
+        <th>
+            {{transfer.contact.name}}
+        </th>
+    </tr>
+
+</table>

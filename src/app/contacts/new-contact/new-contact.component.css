@@ -1,0 +1,18 @@
+.container {
+    display: grid;
+    margin-right: 150px;
+    margin-left: 150px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto;
+    margin-left: 5px;
+    margin-top: 2px;
+}
+
+.input-width {
+    min-width: 150px;
+    max-width: 250px;
+}

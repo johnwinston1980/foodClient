@@ -1,50 +1,57 @@
-.container {
-    display: grid;
-    background-color: azure;
-}
-
 ul {
-    margin: 0;
+    margin-top: 5px;
+    display: grid;
+    align-content: center;
+    justify-content: center;
     padding: 0;
 }
 
-.row {
+li {
     display: grid;
-    grid-template-columns: 25% 75%;
-    grid-template-rows: 120px;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 110px;
+    margin-top: 2px;
+    /*border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-color: darkred;*/
 }
 
 .titledescription {
     display: grid;
-    grid-template-rows: 30% 70%;
+    grid-template-rows: 25% 75%;
 }
 
 img {
     width: 95px;
     height: 65px;
-    border-radius: 10%;
+    border-radius: 5%;
 }
 
 .imagewrapper {
     display: grid;
-    align-items: center;
+    align-items: flex-start;
     justify-items: center;
+    margin-top: 5px;
 }
 
-.titlewrapper {
-    display: grid;
-    background-color: blue;
-}
-
-h4 {
-    display: grid;
-    justify-items: center;
-    align-items: center;
-}
-
-.limit {
-    overflow: hidden;
+p {
+    text-align: justify;
     margin-top: 2px;
+    /*font-style: italic;*/
+    font-size: 0.8em;
+    /*font-family: var(--primary-font);*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 5px;
+}
+
+label {
+    font-size: 1.0em;
+    /*font-style: italic;*/
+    /* font-weight: bold;*/
+    color: var(--text-color);
+    font-family: Lato;
+    margin-left: 5px;
 }
 
 li:active {

@@ -1,0 +1,15 @@
+<form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+    <label>Cantidad</label><input formControlName="amount" type="number">
+
+    <p *ngIf="!transferForm.valid">Contact is invalid or incomplete.</p>
+    <div formGroupName="contact">
+        <label>Nombre</label><input formControlName="name">
+        <label>Email</label><input formControlName="email">
+        <label>Phone</label><input formControlName="phone">
+        <label>Direccion</label><input formControlName="address">
+        <label>Provincia</label><input formControlName="prov">
+        <label>Municipio</label><input formControlName="town">
+    </div>
+
+    <button type="submit" [disabled]="!transferForm.valid">Submit</button>
+</form>

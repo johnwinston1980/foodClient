@@ -9,5 +9,5 @@ export interface Provider{
   distance?: string
   description?: string
   rating?: number
-  reviews?: number
+  reviews?: number  
 }

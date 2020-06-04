@@ -1,0 +1,48 @@
+<form [formGroup]="providerForm" (ngSubmit)="onSubmit()">
+
+    <p *ngIf="!providerForm.valid">Contact is invalid or incomplete.</p>
+
+
+    <!--<label>Nombre</label><input formControlName="name" type="text">-->
+
+    <mat-form-field class="input-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name">
+    </mat-form-field>
+
+    <label>Email</label>
+    <select formControlName="email">
+        <option *ngFor="let user of users" [ngValue]="user.email">{{user.email}}</option>        
+    </select>
+
+
+    <label>Phone</label><input formControlName="phone" type="text">
+
+    <!--<label> Provincia: </label>
+    <select formControlName="prov" (ngModelChange)="onChangeofProvince($event)">
+                <option *ngFor="let province of provinces" [ngValue]="province.name">{{province.name}}</option>        
+            </select>-->
+
+
+    <mat-form-field>
+        <mat-label>Provincia</mat-label>
+        <mat-select formControlName="prov" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let province of provinces" [ngValue]="province.name" [value]="province.name">
+                {{province.name}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="providerForm.hasError('required')">Seleccione una provincia</mat-error>
+        <!--<mat-hint>{{animalControl.value?.sound}}</mat-hint>-->
+    </mat-form-field>
+
+
+    <label> Municipio: </label>
+    <select formControlName="town">
+                <option *ngFor="let t of towns" [ngValue]="t.name">{{t.name}}</option>        
+            </select>
+
+
+    <button type="submit" [disabled]="!providerForm.valid">Submit</button>
+
+</form>

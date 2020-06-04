@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import 'assets/scss/modules/_fonts.css';
+:root {
+    --primary-color: #789c62;
+    --background-color: #e5e5e5;
+    --text-color: #2e361f;
+}
+
+* {
+    font-family: Lato-Light;
+}
+
+
+/*$primary_font: 'Lato';
+
+$thin:100;
+$light:300;
+$regular:400;
+$bold:700;
+$black:900;
+
+
+$font-xs:12px;
+$font-sm: 14px;
+$primary-fs: 16px;
+$font-md: 18px;
+$font-lg: 20px;*/

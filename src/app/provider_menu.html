@@ -1,0 +1,37 @@
+<table>
+    <tr>
+        <th>
+            <img src="{{user.photoURL}}" width="60px" height="60px">
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <label>{{user.displayName}}</label>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <a (click)="listContacts()"><label>Contactos</label></a>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <a (click)="createContact()">Nuevo contacto</a>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <a (click)="listTransfers()">Transferencias</a>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <a (click)="newProvince()">Provinces</a>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <a (click)="logout()">Logout</a>
+        </th>
+    </tr>
+</table>

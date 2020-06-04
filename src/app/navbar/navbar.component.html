@@ -1,0 +1,10 @@
+<div class="container">
+    <mat-icon (click)="toggle()" aria-hidden="false" aria-label="Example home icon">menu</mat-icon>
+    <div style="align-items: center; justify-items: center; align-self: center;">
+        <mat-icon *ngIf="home" (click)="goHome()" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+    </div>
+    <label>{{email}}</label>
+    <div style="align-self: center;">
+        <mat-icon (click)="goHome()" aria-hidden="false" aria-label="Example home icon">shopping_cart</mat-icon>
+    </div>
+</div>

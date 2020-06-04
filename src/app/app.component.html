@@ -1,1 +1,23 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container" autosize>
+
+    <mat-drawer #drawer class="example-sidenav" mode="push" opened=false>
+
+        <div *ngIf="!(afAuth.authState | async)">
+            <div (click)="login()">Login</div>
+            <div (click)="register()">Register</div>
+        </div>
+        <div *ngIf="afAuth.authState | async">
+            <div (click)="logout()">Log out</div>
+        </div>
+
+    </mat-drawer>
+
+    <div>
+        <app-navbar (eventEmitter)="eventCallBack($event)"></app-navbar>
+    </div>
+
+    <div class="main">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-drawer-container>
