@@ -8,6 +8,10 @@ import { Contact } from '../../contacts/shared/contact'
 import { BroadcastObjectServiceService } from '../../shared/broadcast-object-service.service'
 import { TransfersService } from '../shared/transfers.service'
 
+export interface Province {
+  id: string
+  name: string
+}
 
 @Component({
   selector: 'app-new-transfer',
@@ -18,19 +22,24 @@ export class NewTransferComponent implements OnInit {
 
   contact: Contact = {}
   //transfer: any = {}
+  provinces: Province[]
+  towns: Province[]
 
   transferForm = new FormGroup({
     amount: new FormControl('', Validators.min(20)),
     status: new FormControl(''),
     uid: new FormControl(''),
+
+    prov: new FormControl(''),
+    town: new FormControl(''),
+
     contact: new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl(''),
       phone: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
-      prov: new FormControl('', Validators.required),
-      town: new FormControl('', Validators.required),
-    })    
+    })
+
   })
 
   constructor(private broadcastObject: BroadcastObjectServiceService,
@@ -38,7 +47,15 @@ export class NewTransferComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.broadcastObject.currentContact.subscribe(contact => {
+
+    this.transfersService.getProvinces().subscribe(provinces => {
+      this.provinces = provinces
+    })
+
+
+
+
+    /*this.broadcastObject.currentContact.subscribe(contact => {
       this.contact = contact
       this.transferForm.setValue({
         amount: 0,
@@ -53,7 +70,19 @@ export class NewTransferComponent implements OnInit {
           town: contact.town,
         }        
       })
+    })*/
+  }
+
+  onChangeofProvince($event) {
+    console.log(this.transferForm.controls['prov'].value)
+    this.transfersService.loadTowns(this.transferForm.controls['prov'].value)
+    this.transfersService.getTowns().subscribe(towns => {
+      this.towns = towns
     })
+  }
+
+  onChangeofMunicipio($event) {
+    console.log(this.transferForm.controls['town'].value)    
   }
 
   onSubmit() {
@@ -61,7 +90,7 @@ export class NewTransferComponent implements OnInit {
     this.transferForm.controls['uid'].setValue(localStorage.getItem('uid'))
     console.log(this.transferForm.value)
     this.transfersService.addTransfer(this.transferForm.value)
-    this.router.navigate(['list-transfers'])    
-  }  
+    this.router.navigate(['list-transfers'])
+  }
 
 }

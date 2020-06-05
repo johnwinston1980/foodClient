@@ -12,13 +12,41 @@ import { Transfer } from '../shared/transfer'
 export class TransfersService {
 
   transfers: Observable<any[]>
+  provinces: Observable<any[]>
+  towns: Observable<any[]>
 
   transfersCollection: AngularFirestoreCollection<Transfer>
+  provincesCollection: AngularFirestoreCollection<any>
+  townsCollection: AngularFirestoreCollection<any>
 
-  constructor(private afs: AngularFirestore) {    
+  constructor(private afs: AngularFirestore) {      
+    this.loadProvinces()
+   }
 
-    
+   getProvinces(){
+     return this.provinces
+   }
 
+   loadProvinces(){
+    this.provincesCollection = this.afs.collection(`provincias`)
+    this.provinces = this.provincesCollection.snapshotChanges().map(changes => {
+      return changes.map(a => {
+        return a.payload.doc.data()        
+      })
+    })
+   }
+
+   loadTowns(provId: string){
+     this.townsCollection = this.afs.collection(`provincias/${provId}/municipios`)     
+     this.towns = this.townsCollection.snapshotChanges().map(changes => {
+      return changes.map(a => {
+        return a.payload.doc.data()        
+      })
+    })
+   }
+
+   getTowns(){
+     return this.towns
    }
 
    loadUserTransfers(){

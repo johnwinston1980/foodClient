@@ -13,8 +13,6 @@ import { NewTransferComponent } from '../app/transfers/new-transfer/new-transfer
 import { ListTransfersComponent } from '../app/transfers/list-transfers/list-transfers.component'
 
 import { DetailsTransferComponent } from '../app/transfers/details-transfer/details-transfer.component'
-import { NewProvinceComponent } from '../app/dispatcher/new-province/new-province.component'
-import { NewTownComponent } from '../app/dispatcher/new-town/new-town.component'
 import { NewDispatcherComponent } from '../app/dispatcher/new-dispatcher/new-dispatcher.component'
 
 import { LoginComponent } from '../app/users/login/login.component';
@@ -25,9 +23,10 @@ import { VerifyEmailComponent } from '../app/users/verify-email/verify-email.com
 import { AccessGuard } from '../app/shared/access.guard'
 
 import { MainSenderComponent } from '../app/sender/main-sender/main-sender.component'
+import { MainAdminComponent } from '../app/admin/main-admin/main-admin.component'
+import { MainDispatcherComponent } from '../app/dispatcher/main-dispatcher/main-dispatcher.component'
 
 import { RegisterErrorComponent } from '../app/errors/register-error/register-error.component'
-import { MainAdminComponent } from '../app/admin/main-admin/main-admin.component'
 
 import { NewProviderComponent } from '../app/providers/new-provider/new-provider.component'
 
@@ -38,6 +37,7 @@ const routes: Routes = [
   { path: 'main-sender', component: MainSenderComponent },
   { path: 'main-admin', component: MainAdminComponent },
   { path: 'main-provider', component: DetailsProviderComponent },
+  { path: 'main-dispatcher', component: MainDispatcherComponent },
   
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -53,8 +53,6 @@ const routes: Routes = [
   
   { path: 'new-transfer', component: NewTransferComponent },
   { path: 'new-contact', component: NewContactComponent },
-  { path: 'new-province', component: NewProvinceComponent },
-  { path: 'new-town', component: NewTownComponent },
   { path: 'new-dispatcher', component: NewDispatcherComponent },
   { path: 'new-provider', component: NewProviderComponent },
 

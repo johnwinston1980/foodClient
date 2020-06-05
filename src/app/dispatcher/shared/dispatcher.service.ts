@@ -35,26 +35,44 @@ export class DispatcherService {
 
   }
 
-  addDispatcher(province: string, town: string, dispatcher: Dispatcher){
+  /*addDispatcher(province: string, town: string, dispatcher: Dispatcher){
     this.afs.collection(`dispatchers/${province}/${town}`).add(dispatcher)
-  }
+  }*/
 
-  addDispatcher2(dispatcher: Dispatcher){
+  addDispatcher(dispatcher: Dispatcher){
+    
     this.afs.collection(`users/`).doc(dispatcher.email).set(dispatcher).then(success => {
-      console.log('user added')
-      this.authService.registerInvitation(dispatcher.email)
+      
+      this.afs.collection(`users/${dispatcher.provider}/dispatchers`).doc(dispatcher.email).set(dispatcher).then(success => {
+
+        this.afs.collection(`provincias/`).doc(dispatcher.prov.id).set(dispatcher.prov).then(success => {
+
+          this.afs.collection(`provincias/${dispatcher.prov.id}/municipios/`).doc(dispatcher.town.id).set(dispatcher.town).then(success => {
+
+            this.afs.collection(`provincias/${dispatcher.prov.id}/municipios/${dispatcher.town.id}/dispatchers`).doc(dispatcher.email).set(dispatcher).then(success => {
+
+              this.authService.registerInvitation(dispatcher.email)
+    
+            })
+
+          })          
+
+        })       
+
+      })      
+
     })
   }
 
-  addProvince(province: any){
+  /*addProvince(province: any){
     this.afs.collection(`province`).doc(province.name).set(province)
   }
 
   addTown(province: string, town: any){    
     this.afs.collection(`province/${province}/towns/`).doc(town.name).set(town)
-  }
+  }*/
 
-  loadTowns(province: string){    
+  /*loadTowns(province: string){    
     this.townsCollection = this.afs.collection(`province/${province}/towns`)
     this.towns = this.townsCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
@@ -70,6 +88,6 @@ export class DispatcherService {
 
   getProvinces(){
     return this.provinces
-  }
+  }*/
 
 }

@@ -29,10 +29,6 @@ import { ListTransfersComponent } from './transfers/list-transfers/list-transfer
 import { FormsModule } from '@angular/forms';
 import { DetailsTransferComponent } from './transfers/details-transfer/details-transfer.component';
 import { NewDispatcherComponent } from './dispatcher/new-dispatcher/new-dispatcher.component';
-import { NewProvinceComponent } from './dispatcher/new-province/new-province.component';
-import { NewTownComponent } from './dispatcher/new-town/new-town.component';
-import { ListProvincesComponent } from './dispatcher/list-provinces/list-provinces.component';
-import { ListTownsComponent } from './dispatcher/list-towns/list-towns.component';
 import { LoginComponent } from './users/login/login.component';
 import { RegisterComponent } from './users/register/register.component';
 import { ForgotPasswordComponent } from './users/forgot-password/forgot-password.component';
@@ -57,10 +53,6 @@ import { MainDispatcherComponent } from './dispatcher/main-dispatcher/main-dispa
     ListTransfersComponent,
     DetailsTransferComponent,
     NewDispatcherComponent,
-    NewProvinceComponent,
-    NewTownComponent,
-    ListProvincesComponent,
-    ListTownsComponent,
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,

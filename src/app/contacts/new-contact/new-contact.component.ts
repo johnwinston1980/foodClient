@@ -40,21 +40,21 @@ export class NewContactComponent implements OnInit {
   ngOnInit() {
     this.contactProfileForm.controls['phone'].setValue('+53')
 
-    this.dispatcherService.getProvinces().subscribe(provinces => {
+    /*this.dispatcherService.getProvinces().subscribe(provinces => {
       this.provinces = provinces
       this.broadcast.broadcastProvinces(provinces)
     })
 
     this.broadcast.provincesList.subscribe(provinces => {
       this.provinces = provinces
-    })
+    })*/
   }
 
   onChangeofProvince(province) {       
-    this.dispatcherService.loadTowns(this.contactProfileForm.controls['prov'].value)
+    /*this.dispatcherService.loadTowns(this.contactProfileForm.controls['prov'].value)
     this.dispatcherService.getTowns().subscribe(towns => {
       this.towns = towns      
-    })
+    })*/
   }  
 
   onSubmit() {    

@@ -49,26 +49,26 @@ export class NewProviderComponent implements OnInit {
 
     })
     
-    this.dispatcherService.getProvinces().subscribe(provinces => {
+    /*this.dispatcherService.getProvinces().subscribe(provinces => {
       //this.provinces = provinces
       console.log('subscribe')
       console.log(provinces)
       this.broadcast.broadcastProvinces(provinces)
-    })
+    })*/
 
-    this.broadcast.provincesList.subscribe(provinces => {
+    /*this.broadcast.provincesList.subscribe(provinces => {
       console.log('broadcast')
       console.log(provinces)
       this.provinces = provinces
-    })
+    })*/
 
   }
 
   onChangeofProvince(province) {       
-    this.dispatcherService.loadTowns(this.providerForm.controls['prov'].value)
+    /*this.dispatcherService.loadTowns(this.providerForm.controls['prov'].value)
     this.dispatcherService.getTowns().subscribe(towns => {
       this.towns = towns      
-    })
+    })*/
   }  
 
 

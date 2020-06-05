@@ -4,6 +4,5 @@ export interface Contact{
     email?: string,
     phone?: number,
     address?: string,
-    prov?: string,
-    town?: string
+    
 }

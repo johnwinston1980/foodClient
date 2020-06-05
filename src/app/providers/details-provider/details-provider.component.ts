@@ -10,6 +10,15 @@ import { ImagesService } from '../../shared/images.service'
 
 import { Upload } from '../../shared/upload'
 
+
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+  link: string;
+}
+
 @Component({
   selector: 'app-details-provider',
   templateUrl: './details-provider.component.html',
@@ -18,23 +27,24 @@ import { Upload } from '../../shared/upload'
 export class DetailsProviderComponent implements OnInit {
 
   provider: Provider
-  images: Upload[] = []
 
+  tiles: Tile[] = [
+    {text: 'Dispatchers', cols: 1, rows: 1, color: '#533cf3', link: 'new-dispatcher'},
+    {text: 'Two', cols: 2, rows: 1, color: '#00bb56', link: ''},
+    {text: 'Three', cols: 1, rows: 1, color: '#cd1af3', link: ''},
+    {text: 'Four', cols: 1, rows: 1, color: '#21c2e0', link: ''},
+  ];
+
+  
   constructor(private router: Router, private broadCastObjectService: BroadcastObjectServiceService,
     private imagesService: ImagesService) {
         
   }
 
-  /*getImages(images){
-    images.forEach(element => {
-      console.log(element.url)
-          
-    });    
-  }*/
-
-  /*rowHeight(): number{
-    return this.images.length > 1 ? 100 : 180;    
-  }*/
+  goto(link){
+    this.router.navigate([link])
+  }
+ 
 
   ngOnInit() {    
     this.broadCastObjectService.currentProvider.subscribe(provider => {
@@ -42,12 +52,12 @@ export class DetailsProviderComponent implements OnInit {
     })
   }
 
-  newProvince(){
+  /*newProvince(){
     this.router.navigate(['new-dispatcher'])
   } 
   
   newTown(){
     this.router.navigate(['new-town'])
-  }
+  }*/
 
 }

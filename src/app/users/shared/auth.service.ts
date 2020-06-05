@@ -31,12 +31,12 @@ export class AuthService {
     private broadcast: BroadcastObjectServiceService,
     private accessGuard: AccessGuard
   ) {
-   
-    
+
+
   }
 
-  init(){
-    this.usersCollection = this.afs.collection(`/users`)    
+  init() {
+    this.usersCollection = this.afs.collection(`/users`)
     this.users = this.usersCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data()
@@ -45,24 +45,29 @@ export class AuthService {
     })
   }
 
-  getUsers(){
+  getUsers() {
     return this.users
   }
 
 
-  async confirmSignIn(email, url){
-    
-    if(this.afAuth.auth.isSignInWithEmailLink(url)){
+  async confirmSignIn(email, url) {
+
+    if (this.afAuth.auth.isSignInWithEmailLink(url)) {
 
       console.log('isSignInWithEmailLink = true')
 
-      await this.afAuth.auth.signInWithEmailLink(email , url).then(success => {
-        
-        console.log(success)
+      await this.afAuth.auth.signInWithEmailLink(email, url).then(success => {
+
+        //console.log(success.user)
         console.log('success')
-        this.router.navigate(['main-provider'])
-        
+
         //update database
+        this.afs.collection(`users`).doc(email).update({
+          "status": "active"
+        }).then(success => {
+          this.router.navigate(['main-dispatcher'])
+        })
+
 
 
       }).catch(error => {
@@ -70,7 +75,7 @@ export class AuthService {
       })
 
     }
-    else{
+    else {
 
       console.log('isSignInWithEmailLink = false')
 
@@ -95,8 +100,9 @@ export class AuthService {
       //localStorage.setItem('user', JSON.stringify(firebaseUser.user));
       flag = true
       //this.loadRoles(firebaseUser.user.uid)
-      uid = firebaseUser.user.uid
+      uid = firebaseUser.user.email
       localStorage.setItem('uid', firebaseUser.user.uid);
+      localStorage.setItem('email', firebaseUser.user.email);
 
       //routerAux.navigate(['main-sender'])
 
@@ -113,12 +119,12 @@ export class AuthService {
 
 
   loadRoles(uid: string) {
-    this.getRoles(uid).subscribe(roles => {         
-      if (roles != null) {        
+    this.getRoles(uid).subscribe(roles => {
+      if (roles != null) {
         localStorage.setItem('roles', JSON.stringify(roles.roles));
         this.accessGuard.redirect()
       }
-      else{
+      else {
         console.log('roles = null')
       }
     })
@@ -135,15 +141,17 @@ export class AuthService {
   }
 
 
-  async registerInvitation(email: string){
+  async registerInvitation(email: string) {
 
     const actionCodeSettings = {
       url: 'http://localhost:4201/forgot-password',
       handleCodeInApp: true
     }
-    
+
     await this.afAuth.auth.sendSignInLinkToEmail(email, actionCodeSettings).then(success => {
-      console.log(success)
+
+      //console.log(success)
+
     }).catch(error => {
       console.log(error)
     })
@@ -157,18 +165,18 @@ export class AuthService {
     const broadcastAux = this.broadcast
     let userData: any
 
-  //  this.afAuth.auth.se
+    //  this.afAuth.auth.se
 
-    
+
     await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(function (result) {
-      
-      userData = result.user      
+
+      userData = result.user
 
     }).catch(function (error) {
 
       broadcastAux.broadcastError(error)
       routerAux.navigate(['error-register'])
-      
+
 
     }).finally(() => {
       this.addUser(userData)
@@ -182,11 +190,12 @@ export class AuthService {
       roles: ['sender'],
       email: userdata.email
     }
-    this.afs.collection(`users`).doc(userdata.uid).set(user).then((result) => {
-      console.log(`user added`)
-      console.log(result)
+    this.afs.collection(`users`).doc(userdata.email).set(user).then((result) => {
       this.router.navigate(['login'])
     })
+    /*this.afs.collection(`users`).doc(userdata.uid).set(user).then((result) => {
+      this.router.navigate(['login'])
+    })*/
   }
 
 
@@ -209,10 +218,10 @@ export class AuthService {
     })
   }*/
 
-  get isLoggedIn(): boolean {
+  /*get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     return user !== null;
-  }
+  }*/
 
   /*async  loginWithGoogle() {
     await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())

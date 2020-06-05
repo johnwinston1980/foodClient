@@ -1,4 +1,6 @@
-<p>main-sender works!</p>
-<button type="button" (click)="newContact()">Nuevo contacto</button>
-<button type="button" (click)="listContact()">Lista contactos</button>
-<button type="button" (click)="listTransfers()">Lista transferencias</button>
+<!--<div *ngIf="condition">Content to render when condition is true.</div>-->
+<mat-grid-list cols="2" rowHeight="150px">
+    <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color" (click)="goto(tile.link)">
+        {{tile.text}}
+    </mat-grid-tile>
+</mat-grid-list>

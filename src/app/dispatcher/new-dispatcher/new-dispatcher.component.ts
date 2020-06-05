@@ -23,7 +23,7 @@ export class NewDispatcherComponent implements OnInit {
     private service: DispatcherService,
     private broadcast: BroadcastObjectServiceService,
     private formBuilder: FormBuilder,
-    ) {
+  ) {
 
   }
 
@@ -34,8 +34,11 @@ export class NewDispatcherComponent implements OnInit {
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       prov: new FormControl('', [Validators.required]),
       town: new FormControl('', [Validators.required]),
+      provider: localStorage.getItem('email'),
+      status: 'pending',
+      roles: ''
     })
-    
+
   }
 
   onChangeofProvince(event) {
@@ -49,12 +52,16 @@ export class NewDispatcherComponent implements OnInit {
     let municipio = provincia.municipios[this.dispatcherForm.controls['town'].value]
     let mun = JSON.stringify(new Province(municipio.id, municipio.name))
 
+    var roles
+    roles = ['dispatcher']
 
-    this.dispatcherForm.controls['prov'].setValue(prov)
-    this.dispatcherForm.controls['town'].setValue(mun)
+    this.dispatcherForm.controls['roles'].setValue(roles)
+    this.dispatcherForm.controls['prov'].setValue(JSON.parse(prov))
+    this.dispatcherForm.controls['town'].setValue(JSON.parse(mun))
+
 
     //console.log(this.dispatcherForm.value)
-    this.service.addDispatcher2(this.dispatcherForm.value)
+    this.service.addDispatcher(this.dispatcherForm.value)
   }
 }
 

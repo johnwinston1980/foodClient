@@ -33,34 +33,40 @@ export class AccessGuard implements CanActivate {
     const roles = JSON.parse(localStorage.getItem('roles'));
     if (roles != null) {
 
+      //var length = Object.keys(roles)
+
+      /*var urls
+      urls = ['main-sender', 'main-provider', 'main-dispatcher', 'main-admin']*/
+
       console.log('roles are saved in localStorage')
       this.broadcast.broadcastRoles(roles)
 
       var url = 'main-sender'
-      var rol = 0
 
-      if (roles != null) {
-        roles.forEach(element => {
-          switch (element) {
-            case 'admin':
-              url = 'main-admin'
-              break;
-            case 'provider':
-              url = 'main-provider'
-              break;
-            case 'dispatcher':
-              url = 'main-dispatcher'
-              break;
-            case 'sender':
-              url = 'main-sender'
-              break;
-          }         
-        });
-      }     
+      //var rol = 0
+
+      roles.forEach(element => {
+        switch (element) {
+          case 'admin':
+            url = 'main-admin'
+            break;
+          case 'provider':
+            url = 'main-provider'
+            break;
+          case 'dispatcher':
+            url = 'main-dispatcher'
+            break;
+          case 'sender':
+            url = 'main-sender'
+            break;
+        }
+      });
+
 
       this.router.navigate([url])
 
     }
+
     else {
       console.log('no roles as yet in access guard')
     }
